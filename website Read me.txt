@@ -1,14 +1,31 @@
+//# Goals: the current webpage has a input box which I was thinking maybe able to input the 22 input features seperated by a comma & then 
+//# parsed with the comma as the delimiter & then put into an array or list and then inputed in to our model. Then the models out put
+//# could be displayed under the column Labeled "Prediction". 
 
-//# I was not able to upload virtualenv file (git said it's too big) I had named "workenv" but that is just a team development file so 
+//# Currently the input box accepts a string of characters from the user & once the "Predict Heart Disease" button is clicked it adds the string 
+//# to a column Labeled "Prediction" of a displayed table 
+//# there are currently two other columns in the table "Added"	"Actions"
+
+//# Extra(not required): If the above functionality is finished then I would like to maybe change the column labeled "Added" to read "Input Features" & 
+//# display the inputed features below this label 
+
+//# Website files & folders include: "app.py", "__pycache__", "static", "templates", "requirements.txt", "website Read me", "test.db"
+
+//# I was not able to upload virtualenv folder (git said it's too big) I had named "workenv" but that is just a team development file so 
 //# probably don't need it & it can be recreated with the commands I listed bellow
+
+//#description                        https://virtualenv.pypa.io/en/latest/
+//# “is a tool to create isolated Python virtual environments” 
+//# "I think it just allows you to keep all the website files/folders in one directory, but there maybe a conflict with 
+//# this folder when the website files/folders are added to our project but I was not able to upload the "virtualenv" folder so 
+//# maybe don't need to worry about this
 
 //# the folder "workenv" (may or may not be necesary) & the file/database "test.db" were
 //# created from the comand line and it might be ok to delete these and recreate them from
 //# the commands listed bellow
 
 //#  this is a list of commands I entered at the terminal during development of this website (I’m using windows 10 so some of these commands might be a little different if your using Linux or on a Mac) 
-//#description                        https://virtualenv.pypa.io/en/latest/
-//# “is a tool to create isolated Python virtual environments” 
+
 pip install virtualenv       
 # or
 pip3 install virtualenv       
