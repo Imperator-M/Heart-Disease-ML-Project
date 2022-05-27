@@ -1,5 +1,5 @@
 //# Goals: the current webpage has a input box which I was thinking maybe able to input the 22 input features 
-//# seperated by a comma (but the character input limit may need to be increased) & then 
+//# seperated by a comma (but the character input limit may need to be increased & maybe the input box width) & then 
 //# parsed with the comma as the delimiter & then put into an array or list and then inputed in to our model. Then the models out put
 //# could be displayed under the column Labeled "Prediction". 
 //# (this maybe easier then creating 22 input boxes ?)
