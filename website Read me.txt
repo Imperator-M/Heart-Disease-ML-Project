@@ -4,7 +4,7 @@
 
 //# Currently the input box accepts a string of characters from the user & once the "Predict Heart Disease" button is clicked it adds the string 
 //# to a column Labeled "Prediction" of a displayed table 
-//# there are currently two other columns in the table "Added"	"Actions"
+//# there are currently two other columns to the right of "Prediction" in the table Labeled "Added"	"Actions"
 
 //# Extra(not required): If the above functionality is finished then I would like to maybe change the column labeled "Added" to read "Input Features" & 
 //# display the inputed features below this label 
