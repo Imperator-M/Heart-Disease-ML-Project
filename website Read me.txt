@@ -1,4 +1,7 @@
 
+//# I was not able to upload virtualenv file (git said it's too big) I had named "workenv" but that is just a team development file so 
+//# probably don't need it & it can be recreated with the commands I listed bellow
+
 //# the folder "workenv" (may or may not be necesary) & the file/database "test.db" were
 //# created from the comand line and it might be ok to delete these and recreate them from
 //# the commands listed bellow
@@ -33,8 +36,6 @@ PS MachineLearn Class\MLProj>
 
 
 
-
-
 //#  this launches the website so you can bring it up in the web browser & you may have to renter this //# command when you make changes to the website code to see it in the browser 
 python app.py
 
@@ -51,6 +52,7 @@ exit()
 
 
 //# I didn't use anything bellow this line
+//# this is just apps used to create/use a server we shouldn't it I think
 pip3 install gunicorn
 
 
