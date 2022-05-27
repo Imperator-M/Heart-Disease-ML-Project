@@ -21,7 +21,7 @@
 //# maybe don't need to worry about this
 
 //# the folder "workenv" (may or may not be necesary) & the file/database "test.db" were
-//# created from the comand line and it might be ok to delete these and recreate them from
+//# created from the comand line and it might be ok (or Necessary) to delete these and recreate them from
 //# the commands listed bellow
 
 //#  this is a list of commands I entered at the terminal during development of this website (I’m using windows 10 so some of these commands might be a little different if your using Linux or on a Mac) 
