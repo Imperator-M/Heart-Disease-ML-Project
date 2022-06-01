@@ -49,10 +49,8 @@ def print_heatmap(labels, predictions, class_names):
 
 if __name__ == '__main__':
     dataset = pd.read_csv('heart_2020.csv', sep=',', header=0)
-    sample = False
     model_training = True
     adaboost = True
-    onehotencode = False
     dataset_u = dataset
     X = dataset_u.drop(['HeartDisease'], axis=1)
     Y = dataset_u['HeartDisease']
@@ -61,31 +59,20 @@ if __name__ == '__main__':
     X['SleepTime'] = min_max_normalization(X['SleepTime'])
     X['PhysicalHealth'] = min_max_normalization(X['PhysicalHealth'])
     X['MentalHealth'] = min_max_normalization(X['MentalHealth'])
-    if onehotencode:
-        onehot = OneHotEncoder()
-        if adaboost:
-            Y = Y.replace(['No', 'Yes'], [-1, 1])
-        else:
-            Y = onehot.fit_transform(np.expand_dims(Y, 1)).toarray()
-        onehotlist = ['Smoking', 'AlcoholDrinking', 'Stroke', 'DiffWalking', 'Sex', 'AgeCategory', 'Race', 'Diabetic', 'PhysicalActivity', 'GenHealth', 'Asthma', 'KidneyDisease', 'SkinCancer']
-        for category in onehotlist:
-            onehot = OneHotEncoder()
-            X[category] = onehot.fit_transform(np.expand_dims(X[category], 1)).toarray()
+    X.loc[:, 'Diabetic'] = X.loc[:, 'Diabetic'].replace(
+        ['Yes (during pregnancy)', 'No, borderline diabetes'], ['Yes', 'No'])
+    X.loc[:, 'Race'] = X.loc[:, 'Race'].replace(
+        ['Hispanic', 'Black', 'Asian', 'American Indian/Alaskan Native'], 'Other')
+    for i in ['Smoking', 'AlcoholDrinking', 'Stroke', 'DiffWalking', 'Diabetic', 'PhysicalActivity', 'Asthma', 'KidneyDisease', 'SkinCancer', 'Sex', 'Race', 'AgeCategory']:
+        X[i] = LabelEncoder().fit_transform(X[i])
+    if adaboost:
+        # 1 dimension
+        Y = LabelEncoder().fit_transform(Y)
     else:
-        X.loc[:, 'Diabetic'] = X.loc[:, 'Diabetic'].replace(
-            ['Yes (during pregnancy)', 'No, borderline diabetes'], ['Yes', 'No'])
-        X.loc[:, 'Race'] = X.loc[:, 'Race'].replace(
-            ['Hispanic', 'Black', 'Asian', 'American Indian/Alaskan Native'], 'Other')
-        for i in ['Smoking', 'AlcoholDrinking', 'Stroke', 'DiffWalking', 'Diabetic', 'PhysicalActivity', 'Asthma', 'KidneyDisease', 'SkinCancer', 'Sex', 'Race', 'AgeCategory']:
-            X[i] = LabelEncoder().fit_transform(X[i])
-        if adaboost:
-            # 1 dimension
-            Y = LabelEncoder().fit_transform(Y)
-        else:
-            # 2 dimension
-            onehot = OneHotEncoder()
-            Y = onehot.fit_transform(np.expand_dims(Y, 1)).toarray()
-        X.loc[:, 'GenHealth'] = X.loc[:, 'GenHealth'].replace(['Poor', 'Fair', 'Good', 'Very good', 'Excellent'], [0, 1, 2, 3, 4])
+        # 2 dimension
+        onehot = OneHotEncoder()
+        Y = onehot.fit_transform(np.expand_dims(Y, 1)).toarray()
+    X.loc[:, 'GenHealth'] = X.loc[:, 'GenHealth'].replace(['Poor', 'Fair', 'Good', 'Very good', 'Excellent'], [0, 1, 2, 3, 4])
     X_train, X_test, y_train, y_test = train_test_split(X, Y, random_state=42, test_size=0.2)
 
     # try a model
