@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>ECS171 Project</title>
+  <link href="/static/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h1>ECS 171 Project</h1>
+
+  <center><content-back>
+    <footer><div><a href="#Interact">Interact</a> </div><div><a href="#Intro">Intro</a> </div> </div><div><a href="#Model">Models</a> </div><div><a href="#References">References</a> </div></footer>
+    
+    <content>
+
+        <h2 id="Interact">Interact</h2>
+
+      <div>
+      <form action = "{{url_for('predict')}}" method="post">
+      <formOuter>
+        <formInner>
+
+          <div style="padding: 10px;">
+           <label for="age">Choose your age:</label>
+          <select name="age" id="age">
+              <option value="18-24">18-24</option>
+              <option value="25-29">25-29</option>
+              <option value="30-34">30-34</option>
+              <option value="35-39">35-39</option>
+              <option value="40-44">40-44</option>
+              <option value="45-49">45-49</option>
+              <option value="50-54">50-54</option>
+              <option value="55-59">55-59</option>
+              <option value="60-64">60-64</option>
+              <option value="65-69">65-69</option>
+              <option value="70-74">70-74</option>
+              <option value="75-79">75-79</option>
+              <option value="80 or older">80 or older</option>
+          </select> 
+          </div>
+
+          <div style="padding: 10px;">
+           <label for="health">Choose your level of health:</label>
+
+          <select name="health" id="health">
+              <option value="Poor">Poor</option>
+              <option value="Fair">Fair</option>
+              <option value="Good">Good</option>
+              <option value="Very good">Very good</option>
+              <option value="Excellent">Excellent</option>
+          </select> 
+          </div>
+
+          <div style="padding: 10px;">
+           <label for="race">Choose your race:</label>
+
+          <select name="race" id="race">
+              <option value="American Indian/Alaskan Native">American Indian/Alaskan Native</option>
+              <option value="Asian">Asian</option>
+              <option value="Black">Black</option>
+              <option value="Hispanic">Hispanic</option>
+              <option value="White">White</option>
+              <option value="Other">Other</option>
+          </select> 
+          </div>
+
+          <div style="padding: 10px;">
+           <label for="sex">Choose your sex:</label>
+
+          <select name="sex" id="sex">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+          </select> 
+          </div>
+
+          <div style="padding: 10px;">
+          <label for="BMI">BMI:</label>
+          <input type="number" id="BMI" name="BMI" min="0" max="100"> 
+            </div>
+
+          <div style="padding: 10px;">
+              <label for="ph">Rate your physical health from 0 to 30:</label>
+              <input type="number" id="ph" name="ph" min="0" max="30"> 
+                </div>
+
+          <div style="padding: 10px;">
+              <label for="mh">Rate your mental health from 0 to 30:</label>
+                  <input type="number" id="mh" name="mh" min="0" max="30"> 
+          </div>
+
+          <div style="padding: 10px;">
+            <label for="sleep">How many hours do you sleep on average:</label>
+            <input type="number" id="sleep" name="sleep" min="0" max="24"> 
+              </div>
+
+        <div style="padding: 10px;">
+          <label for="diabetic">Check if you are diabetic: </label><br>
+          <input type="checkbox" id="diabetic" name="diabetic" value="smoker">
+        </div>
+        
+        <div style="padding: 10px;">
+          <label for="smoker">Check if you smoke: </label><br>
+          <input type="checkbox" id="smoker" name="smoker" value="smoker">
+        </div>
+
+        </formInner>
+
+      
+      <formInner>
+
+          <div style="padding: 10px;">
+            <label for="alcohol">Check if you drink alcohol: </label><br>
+            <input type="checkbox" id="alcohol" name="alcohol" value="alcohol">
+          </div>
+
+          <div style="padding: 10px;">
+            <label for="stroke">Check if you have had a stroke: </label><br>
+            <input type="checkbox" id="stroke" name="stroke" value="stroke">
+          </div>
+        
+        <div style="padding: 10px;">
+            <label for="walking">Check if you have difficulty walking: </label><br>
+            <input type="checkbox" id="walking" name="walking" value="walking">
+          </div>
+
+          <div style="padding: 10px;">
+            <label for="active">Check if you are physically active: </label><br>
+            <input type="checkbox" id="active" name="active" value="active">
+          </div>
+
+          <div style="padding: 10px;">
+            <label for="asthma">Check if you have asthma: </label><br>
+            <input type="checkbox" id="asthma" name="asthma" value="asthma">
+          </div>
+
+          <div style="padding: 10px;">
+            <label for="skin">Check if you have had skin cancer: </label><br>
+            <input type="checkbox" id="skin" name="skin" value="skin">
+          </div>
+
+          <div style="padding: 10px;">
+            <label for="kidney">Check if you have had kidney disease: </label><br>
+            <input type="checkbox" id="skin" name="kidney" value="kidney">
+          </div>
+      </formInner>
+        </formOuter>
+          
+          <div>
+        <button type = "submit">Enter</button>
+          </div>
+    </form>
+
+        <br>
+        <br>
+    {{prediction_text}}
+        
+    </div>
+
+    <h2 id="Intro">Introduction and Background</h2>
+    <div>
+      <h3>Intro</h3>
+      <p>Heart disease is one of the major causes of death within the United States, affecting more people per year than COVID-19 or cancer. Thus, it is important to understand the underlying causes of this class of disease. Therefore, machine learning may be an incredibly useful tool for exploring the correlations between certain health habits and the leading cause of death in America. By analyzing health data of a patient such as BMI, race, age, exercising habits, etc. an effective database could be created that reliably predicts risks for heart disease. </p>
+
+    <p>However, it is difficult to use these large databases of information to make predictions on individual patients. Most modern models can make broad generalizations about how certain activities, like eating fast food, can increase risk. They are unable to reliably tell a patient how long they have before it proves fatal, how at risk they are of getting heart disease, or how long before they will get heart disease.
+</p>
+    <p>If an efficient algorithm could be found for reliably predicting the timeframe and chances of heart disease, it would provide great advancements in many fields. For example:</p>
+
+      <ul>
+    <li> <b>Cardiology</b> - Having an effective measure to record immediate risks to heart disease could be used both as a preventative measure, as well as, a diagnosis tool. Being able to reliably tell patients how long they have before their heart starts to fail could be incredibly useful in deciding what treatment methods should be used. Furthermore, a robust model could help doctors in discovering new health risk factors that they could then advise the public to avoid.
+</li>
+
+      <li> <b>Genetics</b> - By creating models that are able to predict health risk factors for heart disease accurately, we could also help notify those who are especially predisposed to it. While we can predict some risks today by looking at family health history, a machine learning model may be able to tell patients and doctors a more complete story. Additionally, these models could also help researchers further identify how different health issues interact and lead to increased risks.
+</li>
+
+      <li> <b>Pediatrics</b> - Being able to identify potential risks for heart disease early in childhood could be used to help children grow up healthier. By knowing how at risk certain children are, we could help formulate dietary plans that would allow them the healthiest upbringing. 
+</li></ul>
+      
+    </div>
+
+    <div>
+      <h3>Literature Review</h3>
+      <p>Machine learning has many applications to the problem of identifying heart disease and continues to make strides in aiding the ongoing efforts to better understand how certain health risks can be identified. Below examples of related work done by researchers has been included. </p>
+
+      <p>Alvaro E. Ulloa-Cerna et al. have made advancements in identifying patients that are at increased risk of undiagnosed structural heart disease by using an electrocardiogram based machine learning model. Through this model, they were able to reach a positive predicted value of 42%, which beat out earlier models which reached maximums of 31%. Of the patients who participated in the study, 11% were identified as having a high risk of developing or already having structural heart disease. Within one year, 41% of those patients were reported as actually having heart disease. Furthermore, similar work has been done by S. Mohan, C. Thirumalai and G. Srivastava. Through the use of Hybrid Random Forest with Linear Model, they were able to use all features of their dataset without any restrictions on feature selection. They were able to find that separately Random Forest and a standard linear model were able to garner decent results for predictions. However, when combined into a hybrid model, they were able to reach a performance level with an accuracy level of 88.7%. These models, while having seemingly very different accuracy levels, illustrate predicting heart disease given different time constraints. Nevertheless, they still serve as a great baseline for how we should expect our models to perform. </p>
+    </div>
+
+    <div>
+      <h3>Dataset Description and Exploratory Data Analysis</h3>
+
+      <p>For this project, we decided to use a publicly available dataset that was relevant to the topic at hand. The dataset was derived from the results of a nationwide survey that the Centers for Disease Control and Prevention (CDC) conducted in 2020. In particular, the survey was part of the CDC’s Behavioral Risk Factor Surveillance System, which conducts telephone surveys every year in order to track trends in American health. This dataset was chosen because of its obvious applicability to our problem (after all, one attribute of the dataset indicates whether a person has heart disease or not), its impressive recency, and its reputable source.</p>
+
+      <p>In total, the dataset consists of the responses of 319,795 U.S. citizens when asked various questions about their health, habits, and demographics. Each sample in the dataset consists of 18 attributes. Most of these (specifically, 10 of them) are answers to yes/no questions, making them binary attributes. Examples of these questions include whether or not the participant drinks heavily, whether or not the participant engages in physical activity outside of work, and, of course, whether or not the participant has heart disease. Other attributes (particularly, four of them) include answers from a static list of more than two possibilities, making them categorical attributes. These categorical questions include the participant’s race and their general health (ranging from “Poor” to “Excellent”). Finally, a few of the attributes (i.e., the remaining four) are numerical in nature, and include data points such as the participant’s BMI and the average amount of hours that they sleep. Those who are interested in the full list of questions represented in the dataset should refer to the website from which the dataset originated, which is listed at the end of this report.</p>
+
+      <p>With large amounts of attributes in a dataset, it may become difficult for machine learning models to converge upon optimal solutions. Therefore, we performed some analysis on the dataset to identify any attributes that might not contribute to our classification task, so that we could drop those attributes before beginning to build any models. Ultimately, we decided that three of the numerical attributes in the dataset would not prove useful for heart disease classification. Specifically, these attributes were the number of hours that each participant sleeps on average, the number of days in the past month where the participant felt that their mental health was poor, and the number of days in the past month where their physical health was poor. All three of these attributes had nearly identical distributions among people with heart disease and people without heart disease. These comparative distributions can be seen in Figure 1. Since each of these attributes has nearly identical distributions when separated by our target attribute, they possess almost no discriminatory power in distinguishing between a person who has heart disease and a person who does not. In addition, all of these attributes are strongly unimodal, meaning that the vast majority of samples have the same value for each respective attribute. With such low variability, these attributes also fail to convey meaningful information for all but a few samples. Thus, it became clear that these attributes should be removed from consideration when developing machine learning models on this dataset.
+</p>
+
+      <img src="/static/fig1.png" width="auto">
+      <p><em><b>Figure 1.</b> Comparative distributions of each of the three numerical attributes that were removed from the dataset. For each attribute, the data is separated by the value of the “HeartDisease” attribute; the distribution for the two respective portions of the data are layered on top of each other, for easier comparison.</em></p>
+
+      <p>Through this exploratory data analysis, we also discovered that the dataset is largely disproportionate with respect to the target attribute. There is about a 10:1 ratio between samples with heart disease and samples without heart disease. Further information on how this imbalance affected our model development, as well as what strategy we took to mitigate this, can be found in our experimental results.</p>
+
+      <p>In addition to removing unnecessary attributes, we also had to perform appropriate preprocessing on the remaining data, so that it would be easy for our models to perform computations on it. There were four types of preprocessing that we applied to the dataset, based on the type of attribute. Firstly, we converted all binary attributes (i.e., all categorical attributes with only two categories) into binary numerical attributes. For example, all “yes” categories were encoded as ones, and all “no” categories were encoded as zeros. Secondly, we performed one-hot encoding on any categorical attributes which had more than two categories and whose categories were not easily quantifiable (for example, the race of participants). However, some categorical attributes did have categories with some distinguishable order. An example of this was the attribute corresponding to a participant’s overall health, which had categories clearly ranging from very positive to very negative, starting at “Excellent” and going down to “Poor”. For these attributes, it seemed more reasonable to perform ordinal encoding, so that each category was mapped to a specific integer value, since these integer values could convey extra information based on whether they were higher or lower than other samples. Doing this instead of one-hot encoding also meant that we had to generate fewer extra attributes, since one-hot encoding generates one new attribute for each possible category of an existing attribute. Finally, for our one remaining numerical attribute (BMI), we performed min-max scaling, because many machine learning models (such as logistic regression and SVM) perform better with normalized data.
+</p>
+      
+    </div>
+
+    <div>
+      <h3>Proposed Methodology</h3>
+
+      <p>Given that the attribute whose value we wish to predict (presence of heart disease) is represented as a yes or no answer within our dataset, the main task at hand falls within the realm of binary classification. This is a class of problem which has seen immense interest, exploration, and research in machine learning circles. As such, there exist an abundance of machine learning models which pose their own solution to binary classification, each of which possess their own strengths and weaknesses. To be as thorough and precise as possible, we decided to develop a multitude of different models and compare their results to determine which type of model would work best for our particular dataset.</p>
+
+      <p>Of course, given the vast size of our dataset (both in terms of the number of samples and the number of attributes), we suspected that one particular type of model might work best for classifying our data, if given enough time and resources for training and hyperparameter tuning: the ever-popular neural network. Thus, we divided our model development into two classes. The “simple” models, as we called them, consist of all models we developed which had relatively few parameters and relatively short training times. These include a lot of the classic models which have been used extensively for binary classification. Particularly, we explored k-nearest neighbors, logistic regression, support vector machines, naive Bayes classifiers, and decision trees. All of these models served as opportunities to learn what works well and what doesn’t for our dataset, and as a great source of performance comparison. However, the model which we deemed most “complex”, and which we spent much time tuning in hopes of attaining exceptional performance, was of course a neural network. The detailed results for all of these models can be found in the experimental results section.</p>
+      
+        <p>When developing all of these models, we had to decide in advance which performance metrics would be most meaningful and relevant for comparing them all. Ultimately, we decided that perhaps the most important characteristic we wanted from our final model was having as many true positives as possible. This would help to ensure that most people who have (or who are at risk of having) heart disease are notified of that. However, we also recognized a secondary concern that we wouldn’t want an excessive amount of false positives either (i.e., telling people that they have heart disease when they really do not). Thus, to balance both of these concerns throughout development, we decided to compare all of our models (both internally, such as when evaluating candidate models through grid search, and externally, such as when comparing models of different types) using F1-score. Since this value represents the harmonic mean of precision and recall, maximizing F1-score is equivalent to maximizing the number of true positives while simultaneously minimizing both the number of false positives and the number of false negatives.</p>
+      
+        <p>Once all of our models were trained and the best one was selected, our next goal was to [maybe insert some information about how we tried to make our model useful by implementing it in a website interface]
+</p>
+      
+    </div>
+      
+    <h2 id="Model">Models</h2>
+
+    <div>
+      <h3>Model 1: k-Nearest Neighbors</h3>
+      
+      <p>The first model we tried to classify our data with was a k-nearest neighbors model. Due to its simplistic classification strategy, we figured that it would be a good baseline to calibrate off of, so that we would have a better idea of the kind of performance we could aim for with more complex models. Since most of the computation happens at classification time with k-nearest neighbors–and since we had an immense amount of training data to perform computations on for each test sample–we knew that this type of model would not be practical for an end-product. Nevertheless, we developed it for the sake of exploring our solution space.</p>
+
+<p>Since we did not know what an optimal value of k would be for our dataset (i.e., the number of nearest neighbors that are used to classify a test sample), we decided to perform some light hyperparameter tuning with a manual grid search (unfortunately, tuning over a large hyperparameter grid proved to take an impractical amount of time with our large dataset, so we could only perform grid search on k itself, and not other hyperparameters). A separate model was built and evaluated for each candidate value of k, and the model which received the highest F1-score on the test set was chosen as our final k-nearest neighbors model.</p>
+
+<p>Ultimately, the best-performing model had a k-value of 1, meaning that each test sample was simply classified with the same label as its single nearest neighbor in the training data. The reason that this low k-value worked best is likely due to the inherent imbalance in our dataset; with about 91% of our training samples being negative, it might be hard to identify positive samples using more than one nearest neighbor. Realizing this, we made sure to take extra precautions and balance our data when developing other models. The confusion matrix for this model can be seen in Figure [insert figure number here]. With a precision, recall, and F1-score all around 0.23, these results were not especially impressive, but, as mentioned above, they served as a good baseline for comparison. As seen in the confusion matrix, the majority of positive samples in our test set were not correctly identified by the model (which is also reflected by the model’s low recall score).
+</p>
+      </div>
+
+  <div>
+      <h3>Model 2: Logistic Regression</h3>
+    
+      <p>The second model we tried to perform classification with was a logistic regression model. Given its more sophisticated classification strategy (at least when compared to k-nearest neighbors), we hoped that this model would show more promising results than the last. To start with, a model was trained on our original, heavily imbalanced dataset. Unfortunately, this model’s performance was quite pessimal. With an F1-score of 0.17 and a recall of 0.10 on the test set, it proved to be worse than the k-nearest neighbors model. Luckily, we realized that this was likely due to the large bias in our dataset toward negative samples. Since logistic regression models sum error over all training samples, our initial regression model was severely undervaluing the correct classification of positive samples, given that they only made up a small portion of the data. Given this, we decided to rebalance our training data by randomly oversampling it, such that the modified training data had an equal number of positive and negative samples. After building another model with the modified data and seeing markedly better results, we decided to move forward with the oversampled training data.</p>
+
+<p>As with the k-nearest neighbors model, we decided to perform some hyperparameter tuning to ensure that we arrived at the most performant model of this type for our dataset. Since this type of model is more computationally efficient than the last, we were able to search through a more extensive parameter grid, complete with cross validation to evaluate each candidate model. In total, we were able to tune three hyperparameters: the type of regularization used when updating model parameters, the strength of the regularization term, and the solver used to find a local minimum of the error function. Once again, candidate models were ranked according to their F1-score on the test set, and the model with the highest score was chosen as our final model.</p>
+
+<p>The results from our best-performing logistic regression model can be seen in Figure [insert figure number here]. With an F1-score of about 0.35, this model (which was trained on our oversampled data) performed noticeably better than the k-nearest neighbors model. Impressively, it achieved a very high recall score of 0.78, meaning that the majority of positive samples in the test set were correctly identified by the model. However, the model still had a fairly low precision of about 0.23, meaning that a majority of the test samples that it labeled as positive were actually false positives.</p>
+  </div>
+
+  <div>
+      <h3>Model 3: Support Vector Machine (SVM)</h3>
+    
+      <p>Our next model to try out was a support vector machine. Our first hurdle when developing this type of model came when we attempted to use scikit-learn’s regular SVC class. Unfortunately, as stated in its documentation, the training time for this class does not scale well with increasingly large amounts of data. With hundreds of thousands of training samples, our data was not well suited for such a task, and the training times proved to be impractically long for our purposes. Thus, we had to switch to using scikit-learn’s LinearSVC class instead. While this class provided much more digestible training times, it also limited us to using a traditional linear kernel for our SVM model. However, given our limited computational resources, and the knowledge that other types of models might fare better anyway, we decided to accept this trade-off.</p>
+
+<p>Since SVM models (especially the soft-margin kind) are known to be sensitive to imbalanced data (due to the fact that they accumulate misclassification error over the entire dataset, similar to logistic regression), we figured that our model would perform better using the oversampled training data. Indeed, when we trained a model using the original data, the results were quite abysmal, with an F1-score of only 0.07. When training on the oversampled data, the results were much more favorable. Choosing to use the oversampled data, we then performed hyperparameter tuning using cross-validated grid search; among the hyperparameters we tuned were the type of regularization, the regularization strength, and the type of loss function used for optimization.</p>
+
+<p>The confusion matrix from our most performant SVM model can be seen in Figure [insert figure number here]. With an F1-score of 0.34, a precision of 0.22, and a recall of about 0.80, this model’s performance was strikingly similar to that of our logistic regression model. However, if we had to choose one, we would likely go with this SVM model, simply due to its slightly higher recall. Since our project tells people if they have heart disease or not, we would ideally want there to be as few false negatives as possible, and this correlates with a higher recall.</p>
+  </div>
+
+  <div>
+      <h3>Model 4: Naive Bayes Classifier</h3>
+    
+      <p>Next on our list of models to try was a Naive Bayes Classifier. Given the many variations of this kind of classifier, we had to use our knowledge of our data to infer which type might lend the best results. Initially, given that the vast majority of our attributes are binary, we figured that a Bernoulli Naive Bayes Classifier might fare best. To prepare our data for such a classifier, we had to drop the two attributes that were ordinally encoded and convert our one continuous attribute (BMI) into a binary attribute (by simply saying whether each BMI sample was above or below the mean). After training a classifier on this modified data, we attained an F1-score of 0.30. Although this wasn’t the worst score we had seen so far, both the precision and recall were fairly low (at 0.34 and 0.27 respectively), so we reasoned that better results were possible.</p>
+
+<p>With our acute awareness of the imbalance in our data (and of the Naive Bayes Classifier’s prominent sensitivity to biased data), we decided to instead turn to scikit-learn’s ComplementNB. This particular variation of Naive Bayes Classifier aims to address the problems that imbalanced data can introduce, so we opted to use it instead of oversampling our data for this type of classifier. Since ComplementNB is tolerant to categorical attributes in addition to binary ones, we were also able to reinsert our two ordinally encoded attributes when training the model. Thus, after performing a very small grid search (after all, there are very few hyperparameters available for tuning with Naive Bayes Classifiers), we arrived at the model whose results are shown in Figure [insert figure number here].</p>
+
+<p>In the end, our ComplementNB model performed noticeably better than the Bernoulli classifier we initially tried. Particularly, its recall score of 0.72 was a marked improvement. However, with a precision of 0.22 and an F1-score under 0.34, its performance on the test set was just shy of the logistic regression and SVM models. Specifically, it had around 200 fewer true positives than those previous two models.
+</p>
+  </div>
+
+  <div>
+      <h3>Model 5: Decision Tree</h3>
+    
+      <p>The final “simple” model we developed to classify our data was a decision tree. To begin with, we trained a single decision tree using our original data. This model received an F1-score of 0.25 on the test set, which was not particularly impressive. Thus, we decided to pivot to a random forest classifier, hoping that its generation of multiple decision trees would help the model generalize better to the test data. We also decided to train this random forest classifier on the oversampled data, so that each decision tree in the forest was likely to get a somewhat even distribution of data to train on. As per usual, we arrived at our final model by performing a grid search to tune hyperparameters. The hyperparameters we chose to tune for this particular classifier were the number of decision trees that were generated in the forest, the maximum size of the data subset held within a single node of a tree, and the number of randomly chosen samples to train each decision tree on.</p>
+
+<p>The confusion matrix for our final random forest classifier can be seen in Figure [insert figure number here]. Ultimately, the results for this model were somewhat underwhelming. On the test set, it achieved an F1-score, precision, and recall of 0.25, 0.22, and 0.28, respectively. These numbers are the second-worst that we’ve observed thus far, with the k-nearest neighbors model being the only one which performed worse. Interestingly, the model did achieve an extremely high F1-score of 0.95 on the training data, but this did not translate well to the test set. This is certainly a sign of overfitting, which is somewhat surprising considering the fact that each candidate model in the grid search was cross-validated to avoid overfitting. Our best theory is that the oversampled data actually harmed the model performance for this type of classifier rather than helping it, by changing the distribution of data between the training data and test data. If we were to try again, we would certainly attempt to train another random forest classifier with the original data. However, the grid search for this model took an exceptional amount of time to run (it was the longest among all of these five models). Therefore, due to computational constraints, we were unable to properly train another classifier of this type.
+</p>
+  </div>
+
+  <div>
+    <h3>Model 6: Deep Neural Network</h3>
+
+    <p>We are using neural network since it can learn and model the relationships between inputs and outputs that are nonlinear and complex; reveal hidden relationships, patterns and predictions. Since with the given dataset, we believe that a neural network will become overfit fast. Therefore, we decided to perform extra pre-process actions. First of all, we did min and max normalization for all numerical categories. For data cleaning, we replaced ‘Yes, (during Pregnancy)’ and ‘No, borderline diabetes’ to simply ‘Yes’ and ‘No’ to reduce complexity of the model input. Afterall, they are indeed yes and no for whether one has diabetes. We also replaced ‘Hispanic', 'Black', 'Asian', 'American Indian/Alaskan Native' with ‘Others’ in the ‘race’ category. We did this simply that the race ‘white’ in this dataset outweighs the others by tremendous amount. We also replaced status of ‘GenHealth’ to simply 0, 1, 2, 3, 4 for 'Poor', 'Fair', 'Good', 'Very good', 'Excellent' to make dataset easier.</p>
+      
+      <p>Since we are building the neural network from the ground up, during the hyperparameter tuning process, we performed tunning over number of layers, number of nodes, optimizer, activation function, learning rate, epochs, and batch size. We obtained a neural network with 13202 parameters with activation function ReLU for hidden layers and Sigmoid for output layer. Learning rate was 0.001; optimizer was Adam; epochs was 100, batch size was 200. Given the fact that it might be overfitting fast, we performed an early stopping in the training section.</p>
+      
+      <p>Figure 7 is the confusion matrix of the neural network. We have a precision rate of 0.97 and a recall rate of 0.46 which results in a F-1 score of 0.624. As we can see, a surprisingly high accuracy rate that the model hardly misclassifies if a person fulfills the traits of getting a heart disease. However, a fairly low recall rate means that the model failed to capture entries that a person with high chance of obtaining heart disease. During the model set-up process, we also tried categorical embedding and oversampling; however, the result did not went better than the original neural network we have set up. </p>
+
+  </div>
+
+  <div>
+    <h3>Model 7: Adaboost</h3>
+
+    <p>We decided to use Adaboost since boosting is one of the three major method of ensemble learning to increase the performance of a model. Boosting algorithms are a set of the low accurate classifier to create a highly accurate classifier. Low accuracy classifier (or weak classifier) offers the accuracy better than the flipping of a coin. Highly accurate classifier(or strong classifier) offer error rate close to 0. Boosting algorithm can track the model who failed the accurate prediction. Rather than being a model in itself, AdaBoost can be applied on top of any classifier to learn from its shortcomings and propose a more accurate model. Also, boosting algorithms are less affected by the overfitting problem which was also the reason we were trying using Adaboost. Here is a graph showing the process of an Adaboost algorithm. </p>
+
+    <p>We kept using the pre-process data that we have for neural network. There are majorly two hyperparameters in an Adaboost algorithm: learning rate and number of estimators. We did hyperparameter tuning for this part as well and ended up with number of estimators as 100 and learning rate of 1.65.</p>
+
+    <p>Figure 8 is the confusion matrix obtained by the Adaboost model. We obtained a precision rate of 0.66, a recall rate of 0.67 which resulted in a F-1 score of 0.665. It is the best F-1 score and the highest recall rate we have obtained. </p>
+
+  </div>
+      
+    <h2 id="References">References</h2>
+
+    <div>
+      <p><b>Dataset:</b></p>
+<p>https://www.kaggle.com/datasets/kamilpytlak/personal-key-indicators-of-heart-disease </p>
+
+<p><b>Literature Review:</b> </p>
+<p>Ulloa-Cerna, Alvaro E., et al. “RECHOmmend: An ECG-Based Machine-Learning Approach for Identifying Patients at High-Risk of Undiagnosed Structural Heart Disease Detectable by Echocardiography.” Circulation, 9 May 2022, https://www.ahajournals.org/doi/abs/10.1161/CIRCULATIONAHA.121.057869. </p>
+ 
+<p>S. Mohan, C. Thirumalai and G. Srivastava, "Effective Heart Disease Prediction Using Hybrid Machine Learning Techniques," in IEEE Access, vol. 7, pp. 81542-81554, 2019, doi: 10.1109/ACCESS.2019.2923707.
+</p>
+      
+    </div>
+      
+  </content></content-back></center>
+  <footer></footer>
+</body>
+
+</html>
