@@ -1,0 +1,91 @@
+//# I figured out how to parse the input 
+
+//# Goals: the current webpage has a input box which I was thinking maybe able to input the 22 input features 
+//# seperated by a comma (but the character input limit may need to be increased & maybe the input box width) & then 
+//# parsed with the comma as the delimiter & then put into an array or list and then inputed in to our model. Then the models out put
+//# could be displayed under the column Labeled "Prediction". 
+//# (this maybe easier then creating 22 input boxes ?)
+
+//# Currently the input box accepts a string of characters from the user & once the "Predict Heart Disease" button is clicked it adds the string 
+//# to a column Labeled "Prediction" of a displayed table 
+//# there are currently two other columns to the right of "Prediction" in the table Labeled "Added"	"Actions"
+
+//# Extra(not required): If the above functionality is finished then I would like to maybe change the column labeled "Added" to read "Input Features" & 
+//# display the inputed features below this label 
+
+//# Website files & folders include: "app.py", "__pycache__", "static", "templates", "requirements.txt", "website Read me", "test.db"
+
+//# I was not able to upload virtualenv folder (git said it's too big) I had named "workenv" but that is just a team development file so 
+//# probably don't need it & it can be recreated with the commands I listed bellow
+
+//#description                        https://virtualenv.pypa.io/en/latest/
+//# “is a tool to create isolated Python virtual environments” 
+//# "I think it just allows you to keep all the website files/folders in one directory, but there maybe a conflict with 
+//# this folder when the website files/folders are added to our project but I was not able to upload the "virtualenv" folder so 
+//# maybe don't need to worry about this
+
+//# the folder "workenv" (may or may not be necesary) & the file/database "test.db" were
+//# created from the comand line and it might be ok (or Necessary) to delete these and recreate them from
+//# the commands listed bellow
+
+//#  this is a list of commands I entered at the terminal during development of this website (I’m using windows 10 so some of these commands might be a little different if your using Linux or on a Mac) 
+
+pip install virtualenv       
+# or
+pip3 install virtualenv       
+
+py -m pip install --upgrade pip --user        
+//# the file I created her was part of the development process but I think it can can be deleted 
+//   if you deleted this folder you could recreate it with this command 
+// I called this folder “workenv” here but in the tutorial, he calls it “env”
+virtualenv workenv     
+virtualenv --system-site-packages -p python ./env      
+
+.\\env\Scripts\activate.bat  
+
+. env\Scripts\activate.bat    
+
+pip3 install flask flask-sqlalchemy   
+
+python -m pip install --upgrade pip --user       
+
+//#  here I’m activating virtualenv  folder
+//# it only takes one of these commands I just didn’t know which one. I think it’s “. env\Scripts\activate” 
+PS MachineLearn Class\MLProj> 
+(env) PS MachineLearn Class\MLProj> . env\Scripts\activate
+(env) PS MachineLearn Class\MLProj> . env\Scripts\activate.bat
+
+
+
+//#  this launches the website so you can bring it up in the web browser & you may have to renter this //# command when you make changes to the website code to see it in the browser 
+python app.py
+
+//# port is 5000 in browser address bar enter URL=>“localhost:5000”
+
+//# start interactive python shell in order to create the database 
+python
+//# create database
+from app import db
+db.create_all()
+//# exit interactive python shell
+exit()
+
+
+
+//# I didn't use anything bellow this line
+//# this is just apps used to create/use a server we shouldn't it I think
+pip3 install gunicorn
+
+
+pip3 freeze > requirements.txt
+
+
+git init 
+git add .
+
+git commit -m "dsfdsdf"
+
+git remote -v
+
+
+
